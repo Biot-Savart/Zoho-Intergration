@@ -1,0 +1,5 @@
+node_modules
+.history
+.env
+nodejs_sdk_tokens.txt
+resources

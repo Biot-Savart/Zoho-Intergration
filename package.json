@@ -1,0 +1,17 @@
+{
+  "name": "zoho",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm jest",
+    "zoho": "node test.js"
+  },
+  "author": "Ryno Myburgh",
+  "license": "MIT",
+  "dependencies": {
+    "@zohocrm/nodejs-sdk-2.0": "^6.1.0",
+    "dotenv": "^16.4.5",
+    "zcrmsdk": "^1.1.0"
+  }
+}
