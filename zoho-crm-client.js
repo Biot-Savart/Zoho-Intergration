@@ -33,9 +33,17 @@ const BodyWrapper =
 const SuccessResponse =
   require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/record/success_response").SuccessResponse;
 
+/**
+ * Represents a client for interacting with Zoho CRM.
+ */
 class ZohoCRMClient {
+  /**
+   * Initializes the Zoho CRM client by setting up the necessary configurations and dependencies.
+   *
+   * @returns {ZohoCRMClient} The initialized Zoho CRM client instance.
+   */
   static async initialize() {
-    /*
+    /**
      * Create an instance of Logger Class that takes two parameters
      * level -> Level of the log messages to be logged. Can be configured by typing Levels "." and choose any level from the list displayed.
      * filePath -> Absolute file path, where messages need to be logged.
@@ -45,12 +53,12 @@ class ZohoCRMClient {
       .filePath("./node_sdk_log.log")
       .build();
 
-    /*
+    /**
      * Create an UserSignature instance that takes user Email as parameter
      */
     const user = new UserSignature(process.env.ADMIN_EMAIL_ADDRESS);
 
-    /*
+    /**
      * Configure the environment
      * which is of the pattern Domain.Environment
      * Available Domains: USDataCenter, EUDataCenter, INDataCenter, CNDataCenter, AUDataCenter
@@ -58,7 +66,7 @@ class ZohoCRMClient {
      */
     const environment = USDataCenter.PRODUCTION();
 
-    /*
+    /**
      * Create a Token instance that requires the following
      * clientId -> OAuth client id.
      * clientSecret -> OAuth client secret.
@@ -73,12 +81,12 @@ class ZohoCRMClient {
       .grantToken(process.env.GRANT_TOKEN)
       .build();
 
-    /*
+    /**
      * Create an instance of FileStore that takes absolute file path as parameter
      */
     const tokenstore = new FileStore("./nodejs_sdk_tokens.txt");
 
-    /*
+    /**
      * autoRefreshFields
      * if true - all the modules' fields will be auto-refreshed in the background, every hour.
      * if false - the fields will not be auto-refreshed in the background. The user can manually delete the file(s) or refresh the fields using methods from ModuleFieldsHandler(utils/util/module_fields_handler.js)
@@ -93,12 +101,12 @@ class ZohoCRMClient {
       .autoRefreshFields(true)
       .build();
 
-    /*
+    /**
      * The path containing the absolute directory path to store user specific JSON files containing module fields information.
      */
     const resourcePath = ".";
 
-    /*
+    /**
      * Call the static initialize method of Initializer class that takes the following arguments
      * user -> UserSignature instance
      * environment -> Environment instance
