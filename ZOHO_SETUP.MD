@@ -1,3 +1,19 @@
+## Index
+
+### [1. Set up CRM, create dummy data and set up access control](#1-set-up-crm-create-dummy-data-and-set-up-access-control)
+
+- [Step 1: Create a Free Demo Instance of Zoho One](#step-1-create-a-free-demo-instance-of-zoho-one)
+- [Step 2: Set Up the CRM App](#step-2-set-up-the-crm-app)
+- [Step 3: Customize the Contacts Module](#step-3-customize-the-contacts-module)
+- [Step 4: Populate the Contacts with Dummy Data Using a CSV File](#step-4-populate-the-contacts-with-dummy-data-using-a-csv-file)
+- [Step 5: Set Up Access Control](#step-5-set-up-access-control)
+- [Step 6: Review and Testing](#step-6-review-and-testing)
+
+### [Adding API Access in Zoho CRM](#adding-api-access-in-zoho-crm)
+
+- [Step 1: Register a Client in Zoho CRM](#step-1-register-a-client-in-zoho-crm)
+- [Step 2: Configure Scope and Generate Grant Token](#step-2-configure-scope-and-generate-grant-token)
+
 ## 1. Set up CRM, create dummy data and set up access control
 
 Creating a CRM app within Zoho One and configuring it to include specific modules and fields involves several steps. Here's how you can set up your CRM app, populate it with dummy data, and set up access controls:
@@ -39,6 +55,8 @@ Creating a CRM app within Zoho One and configuring it to include specific module
 
    Ensure that the values for 'Tag' are set to false and 'Status' is set to 'Waiting' for each contact.
 
+   #### For eas the contacts.csv file in the repo can be used, it includes all the demo data
+
 2. **Import the CSV File into Zoho CRM**:
 
    - Go to the "Contacts" module in your CRM dashboard.
@@ -69,3 +87,36 @@ This method allows you to efficiently add multiple contacts to your Zoho CRM at 
 2. Review all entries in the Contacts module to ensure all data is entered correctly and behaves as expected based on the role configurations.
 
 These steps should help you successfully set up and customize a CRM app within Zoho One tailored to your specific needs, including specific fields, dummy data, and access controls.
+
+## Adding API Access in Zoho CRM
+
+To integrate or automate functionalities in Zoho CRM using its API, you need to set up API access by creating a self client, obtaining the client secret, configuring the scope, and creating the grant token. Here’s how you can do it:
+
+### Step 1: Register a Client in Zoho CRM
+
+1. **Navigate to the API Console**: Log into your Zoho CRM account, go to `Settings`, then to `Developer Hub`, and select `APIs and SDKs`.
+2. **Add Client**:
+   - Click on SDK's
+   - Click on `Register New Client` and then `+ Add Client`.
+   - Select `Self Client`.
+   - Enter the required details like Client Name.
+   - Click `Create`.
+3. **Obtain Client ID and Client Secret**:
+   - After the client is registered, you’ll see a `Client ID` and `Client Secret`. Note add these to your .env file, as the secret is needed for authentication and should not be shared.
+
+### Step 2: Configure Scope and Generate Grant Token
+
+This is a 1 time process per client if done correctly.
+
+1. **Determine Needed Permissions**:
+   - Decide which aspects of the CRM your application needs to access. For example, `ZohoCRM.modules.ALL` allows access to all modules. In the `scope.txt` file is a scope that can be used, just cope and paste that scope.
+2. **Create Grant Token**:
+   - Add the scope from above.
+   - Select `Time Duration`
+   - Give the Scope a description (Can be anything)
+   - Click `Create`
+   - Select your created CRM portal
+   - Select the Company/Environment
+   - Click `Create`
+   - Copy the generated token and add it to the `.env` file along with the `Client ID` and `Client Secret`
+   - Run the script withn the set amount of time (`Time Duration`)
