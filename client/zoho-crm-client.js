@@ -50,7 +50,7 @@ class ZohoCRMClient {
      */
     const logger = new LogBuilder()
       .level(Levels.ALL)
-      .filePath("./node_sdk_log.log")
+      .filePath("./client/node_sdk_log.log")
       .build();
 
     /**
@@ -84,7 +84,7 @@ class ZohoCRMClient {
     /**
      * Create an instance of FileStore that takes absolute file path as parameter
      */
-    const tokenstore = new FileStore("./nodejs_sdk_tokens.txt");
+    const tokenstore = new FileStore("./client/nodejs_sdk_tokens.txt");
 
     /**
      * autoRefreshFields
@@ -104,7 +104,7 @@ class ZohoCRMClient {
     /**
      * The path containing the absolute directory path to store user specific JSON files containing module fields information.
      */
-    const resourcePath = ".";
+    const resourcePath = "./client";
 
     /**
      * Call the static initialize method of Initializer class that takes the following arguments

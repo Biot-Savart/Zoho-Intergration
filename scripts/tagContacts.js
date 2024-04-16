@@ -1,4 +1,4 @@
-const { ZohoCRMClient } = require("./zoho-crm-client");
+const { ZohoCRMClient } = require("../client/zoho-crm-client");
 
 /**
  * Searches and tags contacts in Zoho CRM based on the provided search term and tag.

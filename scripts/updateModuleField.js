@@ -1,4 +1,4 @@
-const { ZohoCRMClient } = require("./zoho-crm-client");
+const { ZohoCRMClient } = require("../client/zoho-crm-client");
 
 /**
  * Updates a field in a Zoho CRM module based on the provided parameters.
