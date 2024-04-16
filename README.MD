@@ -58,7 +58,7 @@ Before running the scripts, set up your environment variables:
 
 1. Locate the `example.env` file in the root directory.
 2. Rename the file to `.env`.
-3. Update the `.env` file with your specific credentials and configuration settings as guided by the comments in the `example.env`.
+3. Update the `.env` file with your specific credentials and configuration settings as guided by [ZOHO_SETUP.MD](https://github.com/Biot-Savart/Zoho-Intergration/blob/main/ZOHO_SETUP.MD) in the **Adding API Access in Zoho CRM** section.
 
 ## Running the Scripts
 
