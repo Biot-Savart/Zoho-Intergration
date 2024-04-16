@@ -8,10 +8,10 @@ const { ZohoCRMClient } = require("./zoho-crm-client");
  */
 async function searchAndTagContacts() {
   // Extract the parameters from command line arguments
-  const startsWith = process.argv[2];
-  let tag = process.argv[3]; // Convert the third argument to a boolean
-  const moduleApiName = "Contacts1";
-  const field = "Taged";
+  const moduleApiName = "Contacts1"; // The API name of the Zoho CRM module to search in
+  const field = "Taged"; // The field in the module to update
+  const startsWith = process.argv[2]; // The search term to find contacts by, beginning with this string
+  let tag = process.argv[3]; //the tag value to update the field with
 
   if (!startsWith) {
     console.log(
@@ -27,7 +27,7 @@ async function searchAndTagContacts() {
     return;
   }
 
-  tag = process.argv[3] === "true"; // Convert the third argument to a boolean
+  tag = process.argv[3] === "true"; // Convert the argument to a boolean
 
   try {
     // Initialize the Zoho CRM client using async/await

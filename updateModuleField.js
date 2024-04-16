@@ -1,17 +1,18 @@
 const { ZohoCRMClient } = require("./zoho-crm-client");
 
 /**
- * Updates module field in Zoho CRM.
+ * Updates a field in a Zoho CRM module based on the provided parameters.
+ *
  * @async
  * @function UpdateModuleField
- * @returns {Promise<void>} A Promise that resolves when the update is complete.
+ * @returns {Promise<void>} A Promise that resolves when the field is updated successfully.
  */
 async function UpdateModuleField() {
   // Extract the parameters from command line arguments
-  const moduleApiName = process.argv[2];
-  const field = process.argv[3];
-  const startsWith = process.argv[4];
-  let value = process.argv[5]; // Convert the third argument to a boolean
+  const moduleApiName = process.argv[2]; //the module name to update the field from
+  const field = process.argv[3]; //the field to update
+  const startsWith = process.argv[4]; //the value to search for in the start of the field
+  let newValue = process.argv[5]; //the value to update the field with
 
   if (!moduleApiName) {
     console.log(
@@ -34,7 +35,7 @@ async function UpdateModuleField() {
     return;
   }
 
-  if (!value) {
+  if (!newValue) {
     console.log(
       "Please provide a value. Usage: node updateModuleField.js <startsWith> [value]"
     );
@@ -69,11 +70,11 @@ async function UpdateModuleField() {
 
     // update each record to include the value
     const recordsToUpdate = records.map((record) =>
-      client.createRecord(field, record.id, value)
+      client.createRecord(field, record.id, newValue)
     );
 
     await client.updateRecords(moduleApiName, recordsToUpdate);
-    console.log(`Records have been updated as ${value}`);
+    console.log(`Records have been updated as ${newValue}`);
   } catch (error) {
     // Log any errors encountered during the process
     console.error("Error searching or updating records", error);
