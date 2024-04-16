@@ -64,8 +64,8 @@ Before running the scripts, set up your environment variables:
 
 The repository contains two scripts in the `scripts` folder:
 
-- `tagContacts.js`: Tags contacts based on certain criteria. Requires parameters such as `contactId` and `tagName`.
-- `updateModuleField.js`: Updates fields within a module. Requires parameters such as `moduleId` and `newFieldValue`.
+- `tagContacts.js`: Searches and tags contacts in Zoho CRM based on the provided search term and tag.
+- `updateModuleField.js`: Updates a field in a Zoho CRM module based on the provided parameters.
 
 Before running these scripts, you must install the necessary dependencies:
 
