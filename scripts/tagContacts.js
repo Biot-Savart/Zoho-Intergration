@@ -15,19 +15,23 @@ async function searchAndTagContacts() {
 
   if (!startsWith) {
     console.log(
-      "Please provide a search term. Usage: node searchContacts.js <startsWith> [tag]"
+      "Please provide a search term. Usage: node tagContacts.js <startsWith> [tag]"
     );
     return;
   }
 
   if (!tag) {
     console.log(
-      "Please provide a tag. Usage: node searchContacts.js <startsWith> [tag]"
+      "Please provide a tag. Usage: node tagContacts.js <startsWith> [tag]"
     );
     return;
   }
 
   tag = process.argv[3] === "true"; // Convert the argument to a boolean
+
+  console.log(
+    `Module API Name: ${moduleApiName}\nField to Update: ${field}\nSearch Term (starts with): ${startsWith}\nTag Value to Update: ${tag}`
+  );
 
   try {
     // Initialize the Zoho CRM client using async/await

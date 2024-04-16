@@ -10,37 +10,42 @@ const { ZohoCRMClient } = require("../client/zoho-crm-client");
 async function UpdateModuleField() {
   // Extract the parameters from command line arguments
   const moduleApiName = process.argv[2]; //the module name to update the field from
-  const field = process.argv[3]; //the field to update
+  const searchField = process.argv[3]; //the field to search in
   const startsWith = process.argv[4]; //the value to search for in the start of the field
-  let newValue = process.argv[5]; //the value to update the field with
+  const fieldToUpdate = process.argv[5]; //the field to update
+  let newValue = process.argv[6]; //the value to update the field with
+
+  const usage =
+    "node updateModuleField.js <moduleApiName> <searchField> <startsWith> <fieldToUpdate> [newValue]";
 
   if (!moduleApiName) {
-    console.log(
-      "Please provide a module. Usage: node updateModuleField.js <moduleApiName> <field> <startsWith> [value]"
-    );
+    console.log("Please provide a module. Usage: " + usage);
     return;
   }
 
-  if (!field) {
-    console.log(
-      "Please provide a field to update. Usage: node updateModuleField.js <moduleApiName> <field> <startsWith> [value]"
-    );
+  if (!searchField) {
+    console.log("Please provide a field to search in. Usage: " + usage);
     return;
   }
 
   if (!startsWith) {
-    console.log(
-      "Please provide a search term. Usage: node updateModuleField.js <startsWith> [value]"
-    );
+    console.log("Please provide a search term. Usage: " + usage);
+    return;
+  }
+
+  if (!fieldToUpdate) {
+    console.log("Please provide a field to update. Usage: " + usage);
     return;
   }
 
   if (!newValue) {
-    console.log(
-      "Please provide a value. Usage: node updateModuleField.js <startsWith> [value]"
-    );
+    console.log("Please provide a value. Usage: " + usage);
     return;
   }
+
+  console.log(
+    `Updating module: ${moduleApiName}\nSearch Field: ${searchField}\nSearch Value (starts with): ${startsWith}\nField to Update: ${fieldToUpdate}\nNew Value: ${newValue}`
+  );
 
   try {
     // Initialize the Zoho CRM client using async/await
@@ -49,7 +54,7 @@ async function UpdateModuleField() {
     // Use the client to search records by field using async/await
     const records = await client.searchModules(
       moduleApiName,
-      field,
+      searchField,
       startsWith
     );
 
@@ -70,11 +75,11 @@ async function UpdateModuleField() {
 
     // update each record to include the value
     const recordsToUpdate = records.map((record) =>
-      client.createRecord(field, record.id, newValue)
+      client.createRecord(fieldToUpdate, record.id, newValue)
     );
 
     await client.updateRecords(moduleApiName, recordsToUpdate);
-    console.log(`Records have been updated as ${newValue}`);
+    console.log(`Record's ${fieldToUpdate} have been updated to ${newValue}`);
   } catch (error) {
     // Log any errors encountered during the process
     console.error("Error searching or updating records", error);
