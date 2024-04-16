@@ -3,3 +3,4 @@ node_modules
 .env
 nodejs_sdk_tokens.txt
 resources
+*.log
